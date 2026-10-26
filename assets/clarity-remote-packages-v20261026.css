@@ -371,3 +371,45 @@ a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid #80
  .mobile-navigation summary{font-size:.88rem}
  .home-hero .actions .btn{width:100%;justify-content:center}
 }
+
+/* Optional add-ons inside What Next? and Keep on Improving cards */
+.offer-addon-panel{
+  background:#f0f5eb;
+  border:1px solid #d5e2ce;
+  border-left:4px solid #80976c;
+  border-radius:8px;
+  margin-top:auto;
+  padding:15px 16px 14px;
+}
+.offer-addon-heading{
+  color:#284a2d;
+  font-family:Manrope,sans-serif;
+  font-size:.87rem;
+  font-weight:800;
+  letter-spacing:.01em;
+  margin-bottom:8px;
+}
+.offer-card .offer-addon-list{
+  padding:0 0 0 18px;
+  margin:0 0 10px;
+  list-style:disc;
+}
+.offer-card .offer-addon-list li{
+  color:#36543a;
+  font-size:.84rem;
+  line-height:1.5;
+  padding:0;
+  margin:5px 0;
+}
+.offer-addon-link{
+  display:inline-block;
+  color:#41683a;
+  font-size:.77rem;
+  font-weight:750;
+  line-height:1.5;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.offer-addon-link:hover{color:#234e2f}
+.offer-card .offer-addon-panel+.btn{margin-top:16px}
+@media(max-width:650px){.offer-addon-panel{padding:14px}}
