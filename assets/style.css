@@ -30,3 +30,30 @@
 .story-article a:not(.btn),.article a:not(.btn){text-decoration:underline;text-underline-offset:3px;text-decoration-color:#8ea683}
 @media(max-width:850px){.links{gap:12px}}
 @media(max-width:600px){.topic-intro{padding:20px}.logo-image{max-width:168px}.brand-logo{max-height:52px}.links .btn{font-size:.75rem}}
+
+/* Private server-side inquiry form */
+.contact-layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:55px;align-items:start}
+.contact-copy{padding-top:14px}.contact-copy .lead{max-width:430px}
+.contact-reasons{margin-top:30px;border-top:1px solid #526456;padding-top:16px}
+.contact-reasons p{color:#e5ede2;font-size:.93rem;margin:14px 0}
+.contact-form{background:#fff;color:#172321;padding:34px;border-radius:16px;box-shadow:0 20px 60px #0d1d1430;border:1px solid #dfe7db}
+.contact-form h3{font-size:1.55rem;margin:0 0 8px}
+.contact-form-intro{font-size:.94rem;color:#57665a;margin:0 0 24px}
+.contact-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.contact-field{margin-bottom:17px}
+.contact-field label{display:block;font-weight:700;font-size:.88rem;line-height:1.5;margin-bottom:7px;color:#24342a}
+.contact-field input,.contact-field select,.contact-field textarea{width:100%;font:inherit;font-size:.94rem;color:#172321;background:#fff;border:1px solid #bfcbbc;border-radius:7px;padding:12px 13px;outline:none;transition:border-color .2s,box-shadow .2s}
+.contact-field textarea{resize:vertical;min-height:130px}
+.contact-field input:focus,.contact-field select:focus,.contact-field textarea:focus{border-color:#536d48;box-shadow:0 0 0 3px #dce8d4}
+.contact-field .optional{font-weight:400;color:#6b786a}
+.honeypot-field{position:absolute!important;left:-10000px!important;width:1px;height:1px;opacity:0;pointer-events:none}
+.contact-submit{width:100%;font:inherit;cursor:pointer;margin-top:10px}
+.contact-submit:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.contact-status{font-size:.86rem;color:#566553!important;margin:14px 0 8px!important;min-height:1.4rem}
+.contact-status[data-state="error"]{color:#9a3a30!important}
+.contact-status[data-state="success"]{color:#315d35!important;font-weight:700}
+.contact-privacy{font-size:.76rem;line-height:1.6;color:#667365!important;margin:16px 0 0!important}
+.contact-privacy a{color:#365b30;text-decoration:underline;text-underline-offset:2px}
+.inquiry-turnstile:not(:empty){padding:8px 0}
+@media(max-width:900px){.contact-layout{grid-template-columns:1fr;gap:30px}.contact-copy .lead{max-width:650px}}
+@media(max-width:600px){.contact-form{padding:22px}.contact-form-grid{grid-template-columns:1fr;gap:0}}
