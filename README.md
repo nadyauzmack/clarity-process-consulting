@@ -15,3 +15,11 @@ Upload this folder through Pages Direct Upload, or connect a GitHub repository; 
 
 ## SEO
 Unique page titles/descriptions, semantic article headings, canonical placeholders, BlogPosting JSON-LD, internal links, sitemap with all 10 posts, and responsive design. After launch submit sitemap in Google Search Console and monitor indexing. SEO rankings are not guaranteed.
+
+
+## October 26 SEO and visual refresh
+- Straightened the homepage process-flow card and matched the palette to official sage/olive and near-black company logos.
+- Added a Lean Six Sigma service landing page and 8 detailed, topic-specific guides (18 posts total).
+- Interlinked DMAIC, Lean wastes, SIPOC, Five Whys, value stream mapping, control plans, and insurance operations.
+- This business describes a Lean Six Sigma-informed approach; it does not claim advanced belt credentials.
+- Domain still requires confirmation. Fake placeholder canonical URLs and the placeholder sitemap are removed until a verified HTTPS site origin is provided.
