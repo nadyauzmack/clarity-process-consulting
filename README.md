@@ -1,10 +1,10 @@
 # Clarity Process Consulting — website
 
-Static website: homepage, blog index, **10 SEO-oriented articles** (5 educational guides + 5 first-person-style illustrative process stories), sitemap, robots.txt, structured data, responsive styles.
+Static website: homepage, Lean Six Sigma services page, blog index, **18 SEO-oriented articles** (including five clearly labeled illustrative first-person scenarios), sitemap, robots.txt, structured data, responsive styles.
 
 ## Before publishing (required)
 1. **Verify business name** with state records and trademark counsel/search; name has not been legally cleared.
-2. Purchase/confirm a domain, then replace `https://YOUR-DOMAIN.example` in every HTML file, `sitemap.xml`, and `robots.txt` with the real HTTPS origin. Domain availability has not been verified.
+2. Preferred canonical domain is `https://www.clarityprocessconsulting.com/`; verify Cloudflare DNS, HTTPS, and that the apex redirects to `www`. Canonical URLs, `og:url`, structured data, robots.txt, and sitemap have been updated.
 3. Replace homepage contact placeholder with your real professional email, and replace the `data-contact-link` button `href="#contact"` with a `mailto:` link or connect a real form provider. No working lead form is included.
 4. Review all service claims, remove any unsupported credentials, and personalize the About section.
 5. **Important: five narrative articles are clearly marked illustrative scenarios, not real client case studies.** Replace with factual first-person accounts only after you verify details and remove identifying/confidential information. The triple-review story is inspired by the example supplied by the business owner, but the article intentionally does not claim a verified outcome.
@@ -22,4 +22,8 @@ Unique page titles/descriptions, semantic article headings, canonical placeholde
 - Added a Lean Six Sigma service landing page and 8 detailed, topic-specific guides (18 posts total).
 - Interlinked DMAIC, Lean wastes, SIPOC, Five Whys, value stream mapping, control plans, and insurance operations.
 - This business describes a Lean Six Sigma-informed approach; it does not claim advanced belt credentials.
-- Domain still requires confirmation. Fake placeholder canonical URLs and the placeholder sitemap are removed until a verified HTTPS site origin is provided.
+- User supplied `https://www.clarityprocessconsulting.com/` as the official domain. Added fully qualified canonicals and XML sitemap. External verification of live Cloudflare/DNS was unavailable.
+
+
+## Domain SEO configuration (2026-10-26)
+All 21 indexable routes use `https://www.clarityprocessconsulting.com/` as canonical origin (homepage, service page, blog index, and 18 articles). The sitemap enumerates all 21. The 404 page remains noindex. Verify live DNS, Cloudflare deployment, and redirects; then submit `https://www.clarityprocessconsulting.com/sitemap.xml` in Google Search Console. Do not publish the site with the homepage's contact-email placeholder; configure real lead capture before using it commercially.
