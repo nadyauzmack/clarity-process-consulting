@@ -7,3 +7,9 @@
 .story-note{background:#edf4f2;border-left:4px solid #447f76;padding:1.1rem 1.3rem;border-radius:8px;color:#243b3b}
 .story-cta{background:#eaf0ed;padding:1.5rem 1.7rem;border-radius:16px;margin:2.5rem 0}
 .story-cta h2{margin-top:0}
+
+/* Corporate logo integration */
+.logo-image{display:inline-flex;align-items:center;flex-shrink:0;max-width:248px;line-height:0}
+.brand-logo{display:block;width:100%;height:auto;max-height:64px;object-fit:contain;object-position:left center}
+.footer .logo-image{background:var(--cream);border-radius:9px;padding:8px 12px;max-width:270px}
+@media(max-width:600px){.logo-image{max-width:175px}.brand-logo{max-height:50px}.footer .logo-image{max-width:225px}}
