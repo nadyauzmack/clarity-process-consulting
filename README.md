@@ -1,46 +1,85 @@
-# Clarity Process Consulting — website
+# Clarity Process Consulting — Remote business process improvement website
 
-Static website: homepage, Lean Six Sigma services page, blog index, **18 SEO-oriented articles** (including five clearly labeled illustrative first-person scenarios), sitemap, robots.txt, structured data, responsive styles.
+Live domain: https://www.clarityprocessconsulting.com/
 
-## Before publishing (required)
-1. **Verify business name** with state records and trademark counsel/search; name has not been legally cleared.
-2. Preferred canonical domain is `https://www.clarityprocessconsulting.com/`; verify Cloudflare DNS, HTTPS, and that the apex redirects to `www`. Canonical URLs, `og:url`, structured data, robots.txt, and sitemap have been updated.
-3. Set up the secure private contact form as documented below before accepting inquiries.
-4. Review all service claims, remove any unsupported credentials, and personalize the About section.
-5. **Important: five narrative articles are clearly marked illustrative scenarios, not real client case studies.** Replace with factual first-person accounts only after you verify details and remove identifying/confidential information. The triple-review story is inspired by the example supplied by the business owner, but the article intentionally does not claim a verified outcome.
-6. Optionally add a privacy policy and consent controls before using analytics or collecting visitor data.
+GitHub + Cloudflare Pages static site with Cloudflare Pages Functions for private consultation requests.
 
-## Deploy with Cloudflare Pages
-Upload this folder through Pages Direct Upload, or connect a GitHub repository; static files need no build command. Configure the custom domain and HTTPS, then update canonicals and sitemap.
+## Structure and navigation
 
-## SEO
-Unique page titles/descriptions, semantic article headings, canonical placeholders, BlogPosting JSON-LD, internal links, sitemap with all 10 posts, and responsive design. After launch submit sitemap in Google Search Console and monitor indexing. SEO rankings are not guaranteed.
+Primary five-page menu:
+- **Home**: `/`
+- **Services**: `/services/`
+- **Insights**: `/blog/`
+- **FAQ**: `/faq/`
+- **Contact**: `/contact/`
 
+Also linked via homepage/footer:
+- **Industries & remote workflow examples**: `/industries/`
+- **Lean Six Sigma consulting**: `/lean-six-sigma-consulting/`
+- **Privacy Notice**: `/privacy/`
 
-## October 26 SEO and visual refresh
-- Straightened the homepage process-flow card and matched the palette to official sage/olive and near-black company logos.
-- Added a Lean Six Sigma service landing page and 8 detailed, topic-specific guides (18 posts total).
-- Interlinked DMAIC, Lean wastes, SIPOC, Five Whys, value stream mapping, control plans, and insurance operations.
-- This business describes a Lean Six Sigma-informed approach; it does not claim advanced belt credentials.
-- User supplied `https://www.clarityprocessconsulting.com/` as the official domain. Added fully qualified canonicals and XML sitemap. External verification of live Cloudflare/DNS was unavailable.
+All services are **100% remote-only**: video conversations, screen-shared workflow observation, approved digital documents and systems. No on-site visits. Industry-neutral positioning with examples covering SaaS, insurance, finance, healthcare administration, HR, agencies, retail/e-commerce, education, nonprofits, real estate, logistics, customer support, and more. This is business process work, not regulated legal, medical or industry-specific compliance advice.
 
+## Packages: indicative starting prices, not guaranteed quotes
 
-## Domain SEO configuration (2026-10-26)
-All 21 indexable routes use `https://www.clarityprocessconsulting.com/` as canonical origin (homepage, service page, blog index, and 18 articles). The sitemap enumerates all 21. The 404 page remains noindex. Verify live DNS, Cloudflare deployment, and redirects; then submit `https://www.clarityprocessconsulting.com/sitemap.xml` in Google Search Console. Do not publish the site with the homepage's contact-email placeholder; configure real lead capture before using it commercially.
+| Package | Hours | Starting price | Scope |
+| --- | ---: | ---: | --- |
+| **The Why?** | 10 total hours, once | **$1,500/project** | Remote analysis + practical advice + in-depth PDF report; **no implementation or changes** |
+| **The What Next?** | 10 + 15+ additional = **25+ total hours** | **$3,750/project** | Everything in The Why? + future-state redesign + new/revised SOPs |
+| **Keep on Improving** | **35+ hours/month** | **$5,250/month** | Retained analysis, process redesign, SOPs and more extensive business operations work |
 
-## Private inquiry form setup (Cloudflare Pages Functions)
-Contact submissions are POSTed to `/api/contact`; a Cloudflare Pages Function sends email via Resend. The destination Gmail address must be set as a **Cloudflare encrypted secret**, never in GitHub or frontend code.
+Starting scope typically covers **one or two defined processes or teams**. Additional processes, departments, interviews, systems, or complexity may increase the agreed hours and cost. Monthly hours, priorities and deliverables are scoped in writing; the retainer is not unlimited additional work.
 
-1. Set up [Resend](https://resend.com) and verify `clarityprocessconsulting.com` for email sending. Add the domain-authentication DNS records Resend specifies to your Cloudflare DNS.
-2. Open Cloudflare → Workers & Pages → clarity-process-consulting → Settings → Variables and Secrets. Add these **Production encrypted secrets**:
-   - `RESEND_API_KEY`: email sending API key from Resend.
-   - `CONTACT_TO_EMAIL`: the Gmail inbox to receive inquiries; configure this only in Cloudflare, never commit it to Git.
-   - `CONTACT_FROM_EMAIL`: verified sender at your domain (for example, `contact@clarityprocessconsulting.com`).
-3. Save the secrets and redeploy production.
-4. Recommended: set up Cloudflare Turnstile for `www.clarityprocessconsulting.com`; add `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` as a pair in Cloudflare (encrypt the secret key). The page loads the public key via `/api/contact-config`, and the Pages Function validates each token server-side.
-5. Test a form submission yourself. Confirm a delivery was accepted, then confirm arrival in your Gmail inbox and check your spam folder.
+Optional separately priced add-ons:
+- **Training videos** (screen-recorded walkthroughs, materials).
+- **System cleaning & data transition** (record/document cleanup and approved migration to new software; scope, permissions, backups and validation assessed before work).
 
-The public form shows "being connected" and disables sending until required private settings are present; it never fakes a successful delivery. `/api/contact-config` exposes only a ready boolean and optional public Turnstile site key, not mailbox identity or credentials. The endpoint validates message lengths and Origin, uses a honeypot, and has a fixed server-side recipient. Add Cloudflare rate limiting to `/api/contact` if spam becomes a problem. Remember to keep `.dev.vars` and `.env` files out of Git.
+## Consultation requests — NOT instant bookings
 
-## Logo palette refresh & CSS cache-busting (2026-10-26)
-The live site previously referenced `/assets/style.css`, which may have been cached. **All 23 HTML pages now load `/assets/clarity-logo-palette-v20261026.css`**, a newly named, self-contained stylesheet with conspicuous sage/olive branding taken from the logo. The original stylesheet remains in GitHub only for reference. Static asset headers request revalidation, and the fresh path avoids reuse of any older cached CSS. Confirm that Cloudflare Pages is connected to this GitHub repo and that its newest production deployment matches the latest main commit; otherwise GitHub-only changes won't affect the public site.
+The Contact page lets prospects:
+- Select a package (deep-linked from a package card via `?package=why`, `what-next`, `keep-improving`).
+- Describe the process and number of teams.
+- State their time zone and preferred video-call windows.
+
+The form requests a consultation only. An appointment is **not booked until confirmed by reply**. No personal email address appears anywhere in GitHub or public site code.
+
+## Configure private email forwarding (required)
+
+Form endpoint: `functions/api/contact.js` (Cloudflare Pages Function).
+Browser script: `assets/consultation-form-v20261026.js`.
+
+Set up [Resend](https://resend.com) and verify your sending domain. Add the provider DNS records in Cloudflare. On the Cloudflare Pages project, add these **Production variables/secrets** in Settings → Variables and Secrets:
+
+- `RESEND_API_KEY` — Resend API key, **encrypted secret**.
+- `CONTACT_TO_EMAIL` — your private destination mailbox, **encrypted secret** (never store the value in GitHub).
+- `CONTACT_FROM_EMAIL` — authorized, domain-verified sender address, preferably encrypted.
+- Optional spam protection: `TURNSTILE_SITE_KEY` (public) and `TURNSTILE_SECRET_KEY` (encrypted), configured together.
+
+Redeploy after saving. Check `/api/contact-config`: it returns only a `ready` boolean and optional public Turnstile site key. The form stays disabled rather than simulating success until required settings exist. Then send a test consultation request, verify provider acceptance and actual inbox delivery. Consider per-IP Cloudflare rate limits if spam occurs.
+
+The website cannot directly confirm an appointment or insert a calendar event from the inquiry alone.
+
+## Technical SEO and quality
+
+- Responsive five-page navigation across every page, including mobile menu.
+- Official logo-aligned sage and olive design in `assets/clarity-remote-packages-v20261026.css`.
+- Canonical URLs use `https://www.clarityprocessconsulting.com`.
+- `sitemap.xml` lists every public page, including all 24 blog posts.
+- `robots.txt` references the sitemap.
+- Site includes schema.org Organization, ProfessionalService/Service, FAQPage, and BlogPosting markup where appropriate.
+- No invented client testimonials. Earlier narrative case stories are framed hypothetically in their content; do not represent them as verified client case studies or disclose employer information.
+- Keywords target actual services and multiple digitally managed industries, not keyword stuffing or unsupported certification claims.
+- Submit the sitemap to Google Search Console after deployment. Search rankings are not guaranteed.
+
+Verify the latest Cloudflare production deployment uses the latest GitHub `main` commit. Site deployment or functioning contact delivery cannot be inferred solely from GitHub pushes.
+
+## Cross-industry remote workflow SEO articles (2026-10-26)
+In addition to 18 existing process / Lean Six Sigma articles, six original, industry-specific remote workflow guides were added:
+- Remote virtual process audits and video walkthroughs.
+- SaaS customer onboarding workflow redesign.
+- Remote HR / staffing onboarding SOPs.
+- Nonclinical healthcare administration processes.
+- E-commerce returns, orders, and fulfillment administration.
+- Professional services client intake and approvals.
+
+Blog index now exposes 24 posts in distinct remote-workflow and process-improvement sections. Industry examples page links to individual guides. The sitemap has 32 indexable pages; check Google Search Console after production deployment and confirm that each referenced URL returns HTTP 200.
