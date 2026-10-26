@@ -1,85 +1,46 @@
-# Clarity Process Consulting — Remote business process improvement website
+# Clarity Process Consulting — website
 
-Live domain: https://www.clarityprocessconsulting.com/
+**Domain:** https://www.clarityprocessconsulting.com/  
+**Hosting:** GitHub → Cloudflare Pages  
+**Business model:** Independent, 100% remote process improvement and operations consulting. No on-site visits.
 
-GitHub + Cloudflare Pages static site with Cloudflare Pages Functions for private consultation requests.
+## Main navigation
 
-## Structure and navigation
+Home · Services · Insights · FAQ · Contact (desktop and mobile). The homepage and footer additionally link to About, Results, case studies, process specialty pages and industry examples.
 
-Primary five-page menu:
-- **Home**: `/`
-- **Services**: `/services/`
-- **Insights**: `/blog/`
-- **FAQ**: `/faq/`
-- **Contact**: `/contact/`
+## Package offers
 
-Also linked via homepage/footer:
-- **Industries & remote workflow examples**: `/industries/`
-- **Lean Six Sigma consulting**: `/lean-six-sigma-consulting/`
-- **Privacy Notice**: `/privacy/`
+- **The Why?** Starting at $1,500; 10 hours of remote workflow diagnosis, recommendations and a detailed PDF report. **Analysis only**—no implementation or SOP changes.
+- **The What Next?** Starting at $3,750; includes The Why? plus 15+ hours of process redesign and SOP creation (25+ hours total).
+- **Keep on Improving** Starting at $5,250/month; 35+ hours monthly for ongoing process analysis, SOPs, operational redesign and restructuring.
+- Optional add-ons: training videos; system cleaning and approved data transition. Both are independently scoped and priced.
+- Standard starting scope: one or two business processes/teams. Expansion requires agreed additional hours/cost.
 
-All services are **100% remote-only**: video conversations, screen-shared workflow observation, approved digital documents and systems. No on-site visits. Industry-neutral positioning with examples covering SaaS, insurance, finance, healthcare administration, HR, agencies, retail/e-commerce, education, nonprofits, real estate, logistics, customer support, and more. This is business process work, not regulated legal, medical or industry-specific compliance advice.
+## Positioning
 
-## Packages: indicative starting prices, not guaranteed quotes
+Clarity is **industry-flexible** for remotely observable, digitally managed workflows. Sector examples include SaaS, insurance operations, finance, HR, nonclinical healthcare administration, e-commerce, logistics coordination, real estate administration, education, nonprofit operations, customer support, professional services and back-office functions.
 
-| Package | Hours | Starting price | Scope |
-| --- | ---: | ---: | --- |
-| **The Why?** | 10 total hours, once | **$1,500/project** | Remote analysis + practical advice + in-depth PDF report; **no implementation or changes** |
-| **The What Next?** | 10 + 15+ additional = **25+ total hours** | **$3,750/project** | Everything in The Why? + future-state redesign + new/revised SOPs |
-| **Keep on Improving** | **35+ hours/month** | **$5,250/month** | Retained analysis, process redesign, SOPs and more extensive business operations work |
+## Evidence-backed expertise expansion (October 26, 2026)
 
-Starting scope typically covers **one or two defined processes or teams**. Additional processes, departments, interviews, systems, or complexity may increase the agreed hours and cost. Monthly hours, priorities and deliverables are scoped in writing; the retainer is not unlimited additional work.
+New public content:
+- `/about/`: founder Nadya Uzmack, B.S. Marketing (Franklin University), Lean Six Sigma Yellow Belt, corporate analyst experience since 2022, tools, methodology, and remote model.
+- `/results/`: selected *reported corporate experience outcomes*: roughly 3→1.5 hours review time; average error rates ~10%→~4% across review work; adoption of 12 automation solutions supported; 50+ learning/process resources created; training across 6 teams; multiple product launches supported.
+- Four `/case-studies/` pages documenting the real problem domains, founder's contribution, results or scope, transferability and methods. These are **prior enterprise-team experience**, not Clarity client engagements.
+- Four service SEO pillars: `/process-audit/`, `/sop-development/`, `/workflow-automation-consulting/`, `/cross-functional-workflow-consulting/`.
+- Four firsthand experience essays: three-hour reviews, automation adoption, knowledge management/training and cross-functional product launches.
+- Every existing blog post connects to related real operational experience and founder profile.
+- Updated Homepage, Services, Insights index, Industries, FAQ and Contact pages with internal links, proof of experience and relevant service-specific copy.
 
-Optional separately priced add-ons:
-- **Training videos** (screen-recorded walkthroughs, materials).
-- **System cleaning & data transition** (record/document cleanup and approved migration to new software; scope, permissions, backups and validation assessed before work).
+**Truthfulness/permission:** Case studies deliberately omit the employer's name, proprietary documents, confidential procedures, individual customer data, and unverified savings claims. Metrics reflect user-reported approximate outcomes during team-led corporate initiatives; avoid implying exclusive authorship, external audit, employer endorsement, or Clarity client results. The previous hypothetical POV articles remain distinct from these real experience pages.
 
-## Consultation requests — NOT instant bookings
+**SEO:** 28 articles and 46 indexable routes including all main pages, service pillars, and results/case studies. All have canonical URLs. `sitemap.xml` enumerates every indexable page. Submit the sitemap in Google Search Console once the latest Cloudflare deployment is confirmed. Exact rankings are not guaranteed; maintain useful, original, helpful content and review performance in Search Console.
 
-The Contact page lets prospects:
-- Select a package (deep-linked from a package card via `?package=why`, `what-next`, `keep-improving`).
-- Describe the process and number of teams.
-- State their time zone and preferred video-call windows.
+**CSS:** All HTML pages use the new `assets/clarity-authority-v20261026.css` stylesheet based on logo-aligned sage and olive. This uses a fresh asset URL to avoid stale CSS caching.
 
-The form requests a consultation only. An appointment is **not booked until confirmed by reply**. No personal email address appears anywhere in GitHub or public site code.
+## Contact form setup
 
-## Configure private email forwarding (required)
+The Contact page is a **consultation inquiry**, not a calendar booking. Users can specify a package, team count, preferred video meeting windows and time zone. Consultations are coordinated by email only after request.
 
-Form endpoint: `functions/api/contact.js` (Cloudflare Pages Function).
-Browser script: `assets/consultation-form-v20261026.js`.
+The form sends to `/api/contact` through Cloudflare Pages Functions and Resend. The private destination Gmail address must be set via Cloudflare **encrypted** `CONTACT_TO_EMAIL` secret, never stored in GitHub. The sender identity comes from `CONTACT_FROM_EMAIL` (verified domain) and Resend API key `RESEND_API_KEY`. Optional Cloudflare Turnstile site and secret keys must be configured together. Deploy again after secret changes, test mail provider acceptance, and verify arrival in the inbox. The form intentionally stays disabled if not configured rather than claiming a submission succeeded.
 
-Set up [Resend](https://resend.com) and verify your sending domain. Add the provider DNS records in Cloudflare. On the Cloudflare Pages project, add these **Production variables/secrets** in Settings → Variables and Secrets:
-
-- `RESEND_API_KEY` — Resend API key, **encrypted secret**.
-- `CONTACT_TO_EMAIL` — your private destination mailbox, **encrypted secret** (never store the value in GitHub).
-- `CONTACT_FROM_EMAIL` — authorized, domain-verified sender address, preferably encrypted.
-- Optional spam protection: `TURNSTILE_SITE_KEY` (public) and `TURNSTILE_SECRET_KEY` (encrypted), configured together.
-
-Redeploy after saving. Check `/api/contact-config`: it returns only a `ready` boolean and optional public Turnstile site key. The form stays disabled rather than simulating success until required settings exist. Then send a test consultation request, verify provider acceptance and actual inbox delivery. Consider per-IP Cloudflare rate limits if spam occurs.
-
-The website cannot directly confirm an appointment or insert a calendar event from the inquiry alone.
-
-## Technical SEO and quality
-
-- Responsive five-page navigation across every page, including mobile menu.
-- Official logo-aligned sage and olive design in `assets/clarity-remote-packages-v20261026.css`.
-- Canonical URLs use `https://www.clarityprocessconsulting.com`.
-- `sitemap.xml` lists every public page, including all 24 blog posts.
-- `robots.txt` references the sitemap.
-- Site includes schema.org Organization, ProfessionalService/Service, FAQPage, and BlogPosting markup where appropriate.
-- No invented client testimonials. Earlier narrative case stories are framed hypothetically in their content; do not represent them as verified client case studies or disclose employer information.
-- Keywords target actual services and multiple digitally managed industries, not keyword stuffing or unsupported certification claims.
-- Submit the sitemap to Google Search Console after deployment. Search rankings are not guaranteed.
-
-Verify the latest Cloudflare production deployment uses the latest GitHub `main` commit. Site deployment or functioning contact delivery cannot be inferred solely from GitHub pushes.
-
-## Cross-industry remote workflow SEO articles (2026-10-26)
-In addition to 18 existing process / Lean Six Sigma articles, six original, industry-specific remote workflow guides were added:
-- Remote virtual process audits and video walkthroughs.
-- SaaS customer onboarding workflow redesign.
-- Remote HR / staffing onboarding SOPs.
-- Nonclinical healthcare administration processes.
-- E-commerce returns, orders, and fulfillment administration.
-- Professional services client intake and approvals.
-
-Blog index now exposes 24 posts in distinct remote-workflow and process-improvement sections. Industry examples page links to individual guides. The sitemap has 32 indexable pages; check Google Search Console after production deployment and confirm that each referenced URL returns HTTP 200.
+Please validate latest production deployment, redirects, contact delivery, mobile layout and Google Search Console. Do not claim live deployment solely because GitHub has a commit.
