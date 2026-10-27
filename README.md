@@ -10,9 +10,9 @@ Home · Services · Insights · FAQ · Contact (desktop and mobile). The homepag
 
 ## Package offers
 
-- **The Why?** Starting at $1,500; 10 hours of remote workflow diagnosis, recommendations and a detailed PDF report. **Analysis only**—no implementation or SOP changes.
-- **The What Next?** Starting at $3,750; includes The Why? plus 15+ hours of process redesign and SOP creation (25+ hours total).
-- **Keep on Improving** Starting at $5,250/month; 35+ hours monthly for ongoing process analysis, SOPs, operational redesign and restructuring.
+- **The Why?** Fixed project price $600; 10 hours of remote workflow diagnosis, recommendations and a detailed PDF report. **Analysis only**—no implementation or SOP changes.
+- **The What Next?** Fixed project price $1,500; includes The Why? plus 15+ hours of process redesign and SOP creation (25+ hours total).
+- **Keep on Improving** Fixed monthly package price $2,100/month; 35+ hours monthly for ongoing process analysis, SOPs, operational redesign and restructuring.
 - Optional add-ons: training videos; system cleaning and approved data transition. Both are independently scoped and priced.
 - Standard starting scope: one or two business processes/teams. Expansion requires agreed additional hours/cost.
 
