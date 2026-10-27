@@ -33,9 +33,16 @@ New public content:
 
 **Truthfulness/permission:** Case studies deliberately omit the employer's name, proprietary documents, confidential procedures, individual customer data, and unverified savings claims. Metrics reflect user-reported approximate outcomes during team-led corporate initiatives; avoid implying exclusive authorship, external audit, employer endorsement, or Clarity client results. The previous hypothetical POV articles remain distinct from these real experience pages.
 
-**SEO:** 28 articles and 46 indexable routes including all main pages, service pillars, and results/case studies. All have canonical URLs. `sitemap.xml` enumerates every indexable page. Submit the sitemap in Google Search Console once the latest Cloudflare deployment is confirmed. Exact rankings are not guaranteed; maintain useful, original, helpful content and review performance in Search Console.
+**SEO:** 28 articles and 47 indexable routes including all main pages, service pillars, and results/case studies. All have canonical URLs. `sitemap.xml` enumerates every indexable page. Submit the sitemap in Google Search Console once the latest Cloudflare deployment is confirmed. Exact rankings are not guaranteed; maintain useful, original, helpful content and review performance in Search Console.
 
 **CSS:** All HTML pages use the new `assets/clarity-authority-v20261026.css` stylesheet based on logo-aligned sage and olive. This uses a fresh asset URL to avoid stale CSS caching.
+
+## Portfolio page (October 26, 2026)
+
+- `/portfolio/`: 12 selected examples, led by learning & development for hospitality and enterprise processor roles. Features an employee-training guide personally written for a hotel and adopted for staff training, food service assistant-management experience, peer training, product-launch procedures, SharePoint knowledge work, ACH/wire/refund/1035 SOPs, cross-team suitability workflow redesign, review tracking, bookmarklet automation, enterprise automation adoption, and Deniras Solutions website/lead acquisition workflow.
+- The portfolio has illustrative employee-facing guide, decision-tree, and microlearning-outline samples distinctly labeled as examples, not client-owned documents or published LMS courses.
+- Notes clearly distinguish independently created deliverables, collaborative prior-employer outcomes, reported metrics, and non-proprietary samples. No original confidential employer assets have been uploaded.
+- Homepage and Services page contain portfolio calls-to-action; major site-page footers link to Portfolio. Primary navigation remains Home, Services, Insights, FAQ, Contact.
 
 ## Contact form setup
 
