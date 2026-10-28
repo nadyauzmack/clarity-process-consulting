@@ -1,4 +1,4 @@
-// Cloudflare Pages Function — recipient and API key must be Cloudflare secrets.
+// Cloudflare Pages Function — deliver inquiries via a private Worker service binding.
 const respond=(status,ok,message)=>new Response(JSON.stringify({ok,message}),{status,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store","X-Content-Type-Options":"nosniff"}});
 const emailOK=s=>/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(s);
 const txt=(v,max)=>typeof v==="string"?v.trim().slice(0,max+1):"";
@@ -9,8 +9,7 @@ export async function onRequestPost({request,env}){
  if(!origin||!["https://www.clarityprocessconsulting.com","https://clarityprocessconsulting.com"].includes(origin)||new URL(origin).host!==url.host) return respond(403,false,"This request could not be verified.");
  if(!String(request.headers.get("Content-Type")||"").toLowerCase().startsWith("application/json"))return respond(415,false,"Invalid submission format.");
  if(Number(request.headers.get("Content-Length")||"0")>12000)return respond(413,false,"Your message is too long.");
- if(!env.RESEND_API_KEY||!env.CONTACT_TO_EMAIL||!env.CONTACT_FROM_EMAIL)return respond(503,false,"The inquiry form is being configured. Please try again later.");
- if(!emailOK(env.CONTACT_TO_EMAIL)||!emailOK(env.CONTACT_FROM_EMAIL))return respond(503,false,"The inquiry form is temporarily unavailable.");
+ if(!env.CLARITY_MAILER)return respond(503,false,"The inquiry form is being configured. Please try again later.");
  if(!!env.TURNSTILE_SITE_KEY!==!!env.TURNSTILE_SECRET_KEY)return respond(503,false,"Verification is being configured.");
  let input;
  try{const raw=await request.text();if(raw.length>12000)return respond(413,false,"Your message is too long.");input=JSON.parse(raw);if(!input||typeof input!=="object"||Array.isArray(input))throw Error("Bad request");}catch{return respond(400,false,"Please check your form details and try again.");}
@@ -26,13 +25,13 @@ export async function onRequestPost({request,env}){
      if(!r.ok||!v.success||!["www.clarityprocessconsulting.com","clarityprocessconsulting.com"].includes(v.hostname))return respond(400,false,"Verification failed. Please try again.");
    }catch{return respond(502,false,"Verification is temporarily unavailable.");}
  }
- const text=["New Clarity Process Consulting video consultation request","","Name: "+name,"Reply-to email: "+email,"Company: "+(company||"Not provided"),"Industry: "+(industry||"Not provided"),"Requested package: "+(service||"Not sure yet"),"Processes/teams: "+(teamCount||"Not specified"),"Time zone: "+(timezone||"Not specified"),"Preferred video-call windows: "+(availability||"Please arrange by email"),"","Project description:",message,"","Request only: no appointment has been confirmed."].join("\n");
  try{
-  const r=await fetch("https://api.resend.com/emails",{method:"POST",headers:{"Authorization":"Bearer "+env.RESEND_API_KEY,"Content-Type":"application/json","User-Agent":"ClarityProcessConsulting/1.0"},body:JSON.stringify({from:"Clarity Process Consulting <"+env.CONTACT_FROM_EMAIL+">",to:[env.CONTACT_TO_EMAIL],reply_to:email,subject:"New video consultation request | Clarity Process Consulting",text})});
-  if(!r.ok)return respond(502,false,"Your message could not be delivered. Please try again later.");
-  const data=await r.json().catch(()=>null);
-  if(!data?.id)return respond(502,false,"Unable to confirm delivery. Please try again later.");
+  const result=await env.CLARITY_MAILER.deliver({name,email,company,industry,service,teamCount,timezone,availability,message});
+  if(!result?.ok)return respond(502,false,"We couldn't confirm your inquiry was sent. Please try again.");
   return respond(200,true,"Your inquiry was sent.");
- }catch{return respond(502,false,"Your message could not be sent at this time.");}
+ }catch(error){
+  console.error("Clarity consultation delivery failed",error?.message||"Unknown delivery error");
+  return respond(502,false,"Your message could not be sent at this time.");
+ }
 }
 export function onRequestGet(){return respond(405,false,"Method not allowed.");}
