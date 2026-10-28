@@ -15,8 +15,8 @@ export async function onRequestPost({request,env}){
  let input;
  try{const raw=await request.text();if(raw.length>12000)return respond(413,false,"Your message is too long.");input=JSON.parse(raw);if(!input||typeof input!=="object"||Array.isArray(input))throw Error("Bad request");}catch{return respond(400,false,"Please check your form details and try again.");}
  if(txt(input.website,300))return respond(200,true,"Thank you for your inquiry."); // honeypot, no mail sent
- const name=flat(txt(input.name,120)),email=flat(txt(input.email,254)),company=flat(txt(input.company,120)),service=flat(txt(input.service,90)),teamCount=flat(txt(input.teamCount,70)),timezone=flat(txt(input.timezone,70)),availability=txt(input.availability,300),message=txt(input.message,4000);
- if(name.length<2||name.length>120||!emailOK(email)||email.length>254||company.length>120||service.length>90||teamCount.length>70||timezone.length>70||availability.length>300||message.length<15||message.length>4000)return respond(400,false,"Please enter your name, a valid email, and a message of at least 15 characters.");
+ const name=flat(txt(input.name,120)),email=flat(txt(input.email,254)),company=flat(txt(input.company,120)),industry=flat(txt(input.industry,120)),service=flat(txt(input.service,90)),teamCount=flat(txt(input.teamCount,70)),timezone=flat(txt(input.timezone,70)),availability=txt(input.availability,300),message=txt(input.message,4000);
+ if(name.length<2||name.length>120||!emailOK(email)||email.length>254||company.length>120||industry.length>120||service.length>90||teamCount.length>70||timezone.length>70||availability.length>300||message.length<15||message.length>4000)return respond(400,false,"Please enter your name, a valid email, and a message of at least 15 characters.");
  if(env.TURNSTILE_SECRET_KEY){
    const token=txt(input.turnstileToken,2048);
    if(!token||token.length>2048)return respond(400,false,"Please complete verification.");
@@ -26,7 +26,7 @@ export async function onRequestPost({request,env}){
      if(!r.ok||!v.success||!["www.clarityprocessconsulting.com","clarityprocessconsulting.com"].includes(v.hostname))return respond(400,false,"Verification failed. Please try again.");
    }catch{return respond(502,false,"Verification is temporarily unavailable.");}
  }
- const text=["New Clarity Process Consulting video consultation request","","Name: "+name,"Reply-to email: "+email,"Company: "+(company||"Not provided"),"Requested package: "+(service||"Not sure yet"),"Processes/teams: "+(teamCount||"Not specified"),"Time zone: "+(timezone||"Not specified"),"Preferred video-call windows: "+(availability||"Please arrange by email"),"","Project description:",message,"","Request only: no appointment has been confirmed."].join("\n");
+ const text=["New Clarity Process Consulting video consultation request","","Name: "+name,"Reply-to email: "+email,"Company: "+(company||"Not provided"),"Industry: "+(industry||"Not provided"),"Requested package: "+(service||"Not sure yet"),"Processes/teams: "+(teamCount||"Not specified"),"Time zone: "+(timezone||"Not specified"),"Preferred video-call windows: "+(availability||"Please arrange by email"),"","Project description:",message,"","Request only: no appointment has been confirmed."].join("\n");
  try{
   const r=await fetch("https://api.resend.com/emails",{method:"POST",headers:{"Authorization":"Bearer "+env.RESEND_API_KEY,"Content-Type":"application/json","User-Agent":"ClarityProcessConsulting/1.0"},body:JSON.stringify({from:"Clarity Process Consulting <"+env.CONTACT_FROM_EMAIL+">",to:[env.CONTACT_TO_EMAIL],reply_to:email,subject:"New video consultation request | Clarity Process Consulting",text})});
   if(!r.ok)return respond(502,false,"Your message could not be delivered. Please try again later.");
