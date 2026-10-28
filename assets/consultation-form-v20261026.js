@@ -23,7 +23,7 @@
   const token=secured?window.turnstile.getResponse(widget):"";
   if(secured&&!token){say("Please complete verification before sending.","error");return;}
   const v=new FormData(form);
-  const payload={name:String(v.get("name")||"").trim(),email:String(v.get("email")||"").trim(),company:String(v.get("company")||"").trim(),service:String(v.get("service")||""),teamCount:String(v.get("teamCount")||""),timezone:String(v.get("timezone")||""),availability:String(v.get("availability")||"").trim(),message:String(v.get("message")||"").trim(),website:String(v.get("website")||""),turnstileToken:token};
+  const payload={name:String(v.get("name")||"").trim(),email:String(v.get("email")||"").trim(),company:String(v.get("company")||"").trim(),industry:String(v.get("industry")||""),service:String(v.get("service")||""),teamCount:String(v.get("teamCount")||""),timezone:String(v.get("timezone")||""),availability:String(v.get("availability")||"").trim(),message:String(v.get("message")||"").trim(),website:String(v.get("website")||""),turnstileToken:token};
   busy(true);say("Sending your inquiry…");
   try{
    const r=await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload),credentials:"same-origin",cache:"no-store"});
