@@ -35,9 +35,10 @@
   finally{busy(false);}
  });
  // Select the requested package when someone arrives from a package card.
- const requested=new URLSearchParams(window.location.search).get("package");
- const packageNames={"why":"The Why? Package","what-next":"The What Next? Package","keep-improving":"Keep on Improving"};
- const choice=packageNames[requested];
- if(choice){const select=form.querySelector('select[name="service"]');if(select)select.value=choice;}
+ const params=new URLSearchParams(window.location.search);
+ const requested=params.get("service")||params.get("package");
+ const packageNames={"why":"The Why? Package","what-next":"The What Next? Package","keep-improving":"Keep on Improving","one-small-fix":"One Small Fix","workflow-diagnostic":"Workflow Diagnostic","email-automation":"Business Email Automation","website-build":"Website Design & Build","docusign":"DocuSign Workflow Setup","training":"SOP & Employee Training Development","operations":"Operations & Workflow Improvement","launch-bundle":"Business Launch Bundle"};
+ const choice=packageNames[requested]||requested;
+ if(choice){const select=form.querySelector('select[name="service"]');if(select&&[...select.options].some(o=>o.value===choice))select.value=choice;}
  setup();
 })();
